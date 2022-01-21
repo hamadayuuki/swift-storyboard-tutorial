@@ -15,7 +15,9 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // 基本的な使い
+        // 【第1回目】
+        // Combine パブリッシャー(Just) を用いた基本的な使い方
+        /*
         // ① : パブリッシャーの作成
         let publisher = Just(100)
         
@@ -35,7 +37,43 @@ class ViewController: UIViewController {
         
         // ③ : パブリッシャーとサブスクライバーをサブスクライブする
         publisher.subscribe(subscriber)
+        */
         
+        // 【第2回目】
+        // オペレータの使い方
+        /*
+        // オペレータに使用するインスタンスを作成
+        var taroTest = Test(personName: "Taro", score: 50)
+        
+        // ①,②,③: taroTest の score を パブリッシャーから得られた値に変更する
+        //          cancellabele は、インスタンスの値を変更するだけの機能
+        //let cancellable = Just(100).assign(to: \.score, on: taroTest)   // 1回目と同じ
+        
+        // ①,②,③,④ : オペレータを使用した場合
+        let cancellable = Just(100)
+            // オペレーター
+            .map({ value in
+                return Int(value)
+            })
+            // (再) サブスクライバー
+            .assign(to: \.score, on: taroTest)
+        
+        print(taroTest.score)
+        */
     }
     
 }
+
+
+// 【第2回目】
+/*
+class Test {
+    
+    var personName: String
+    var score: Int
+    init(personName: String, score: Int) {
+        self.personName = personName
+        self.score = score
+    }
+}
+*/
