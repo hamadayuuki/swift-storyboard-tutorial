@@ -60,13 +60,36 @@ class ViewController: UIViewController {
         
         print(taroTest.score)
         */
+        
+        // 【第3回目】
+        // NotificationCenter と Combine を組み合わせて、イベント通知された値を扱う
+        
+        // オペレータに使用するインスタンスを作成
+        var taroTest = Test(personName: "Taro", score: 50)
+        
+        // パブリッシャー : 値を発行する
+        // 今回は Notification の通知を使い値を受け取る
+        let cancelable = NotificationCenter.default.publisher(for: .notifyName, object: nil)
+            // オペレーター : パブリッシャーから受け取ったデータを整形する
+            .map({ notifyName in
+                // Notification の通知から値を受け取り
+                return notifyName.userInfo?["result"] as? Int ?? 0
+            })
+            // サブスクライバー : 値を受け取る, 受け取って何か行う.今回では .assign を使ってデータの代入
+            .assign(to: \.score, on: taroTest)
+        
+        // Notificationの通知によって渡された 50 が表示される
+        print(taroTest.score)   // 50
+        
+        // 通知を送る
+        NotificationCenter.default.post(name: .notifyName, object: nil, userInfo: ["result" : 90])
+        
     }
     
 }
 
 
-// 【第2回目】
-/*
+// 【第2,3回目】
 class Test {
     
     var personName: String
@@ -76,4 +99,9 @@ class Test {
         self.score = score
     }
 }
-*/
+
+// 【第3回目】
+// Notification の名前づけ
+extension Notification.Name {
+    static let notifyName = Notification.Name("notifyName")
+}
