@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Foundation
 import Combine
 
 class ViewController: UIViewController {
@@ -63,7 +64,7 @@ class ViewController: UIViewController {
         
         // 【第3回目】
         // NotificationCenter と Combine を組み合わせて、イベント通知された値を扱う
-        
+        /*
         // オペレータに使用するインスタンスを作成
         var taroTest = Test(personName: "Taro", score: 50)
         
@@ -83,6 +84,34 @@ class ViewController: UIViewController {
         
         // 通知を送る
         NotificationCenter.default.post(name: .notifyName, object: nil, userInfo: ["result" : 90])
+        */
+        
+        // 【第4回目】
+        // ? GithubAPIからのデータ取得をどう実装すれば良いのかわかっていない
+        var decoder = JSONDecoder()
+
+        let url = URL(string: "https://pythonchannel.com/media/codecamp/201902/JSON-Sample1.json")!
+        
+        var request = URLRequest(url: url)
+                
+        let cancelable = URLSession.shared.dataTaskPublisher(for: request)
+            .map( { (data, response) in
+                return data
+            })
+            .decode(type: GithubAPI.self, decoder: decoder)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("実行完了")
+                case .failure(let error):
+                    print("エラー")
+                    print(error)
+                }
+                print("completion")
+            },receiveValue: { value in
+                print("value")
+                print(value)
+            })
         
     }
     
@@ -104,4 +133,14 @@ class Test {
 // Notification の名前づけ
 extension Notification.Name {
     static let notifyName = Notification.Name("notifyName")
+}
+
+// 【第4回目】
+struct GithubAPI: Codable {
+    //var title: String
+    var total_count: Int
+    var items: [ItemModel]
+}
+struct ItemModel: Codable {
+    var url: String
 }
