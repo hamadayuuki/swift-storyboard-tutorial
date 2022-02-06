@@ -42,8 +42,6 @@ class ViewController: UIViewController {
         subject.send(completion: .finished)   // イベント終了を送信
         
     }
-
-
 }
 
 // 受け取り先を2つ作成
@@ -55,6 +53,7 @@ final class Receiver {
     var subscriptions = Set<AnyCancellable>()   // → 2つのsubscriptionを 1つにまとめるための subscription
     
     init() {
+        /*
         // 1つ目の受け取り
         //subscription1 = subject
         // 1つのsubscriptionにまとめる場合は subjectを変数で保持する必要なし
@@ -71,5 +70,20 @@ final class Receiver {
                 print("[2] subscription : ", value)
             }
             .store(in: &subscriptions)   // 1つのsubscriptionにまとめる
+         */
+        
+        // 受信結果をクラスの変数に代入する
+        subject
+            .assign(to: \.value, on: SomeObject())
+            .store(in: &subscriptions)
+    }
+}
+
+// 値が代入されるか確認するためにクラス
+final class SomeObject {
+    var value: String = "" {
+        didSet {
+            print("didSet value : ", value)
+        }
     }
 }
