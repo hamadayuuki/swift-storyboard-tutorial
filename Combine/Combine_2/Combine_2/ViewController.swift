@@ -35,7 +35,7 @@ class ViewController: UIViewController {
         let receiver = Receiver()
         subject.send("あ")
         subject.send("い")
-        receiver.subscription1.cancel()   // subscription1 を中止する
+        //receiver.subscription1.cancel()   // subscription1 を中止する
         subject.send("う")
         subject.send("え")
         subject.send("お")
@@ -50,20 +50,26 @@ class ViewController: UIViewController {
 // final : 継承を禁止する
 final class Receiver {
     // 受け取りを2つ用意
-    let subscription1: AnyCancellable
-    let subscription2: AnyCancellable
+    //let subscription1: AnyCancellable
+    //let subscription2: AnyCancellable
+    var subscriptions = Set<AnyCancellable>()   // → 2つのsubscriptionを 1つにまとめるための subscription
     
     init() {
         // 1つ目の受け取り
-        subscription1 = subject
+        //subscription1 = subject
+        // 1つのsubscriptionにまとめる場合は subjectを変数で保持する必要なし
+        subject
             .sink{ value in
                 print("[1] subscription : ", value)
             }
+            .store(in: &subscriptions)   // 1つのsubscriptionにまとめる
         
         // 2つ目の受け取り
-        subscription2 = subject
+        //subscription2 = subject
+        subject
             .sink{ value in
                 print("[2] subscription : ", value)
             }
+            .store(in: &subscriptions)   // 1つのsubscriptionにまとめる
     }
 }
