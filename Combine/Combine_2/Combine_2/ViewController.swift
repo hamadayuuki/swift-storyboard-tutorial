@@ -16,6 +16,10 @@ import Combine
 // イベントは「文字列を渡して表示させる」というもの
 public let subject = PassthroughSubject<String, Never>()   // <受信する型, 返信する型>
 
+// イベントを送信する
+// リストを Publisher に変更できる,
+public let listPublisher = ["1", "2", "3", "4", "5"].publisher   // 型は Publishers.Sequence<[String], Never>
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -72,10 +76,32 @@ final class Receiver {
             .store(in: &subscriptions)   // 1つのsubscriptionにまとめる
          */
         
+        /*
         // 受信結果をクラスの変数に代入する
         subject
             .assign(to: \.value, on: SomeObject())
             .store(in: &subscriptions)
+         */
+        
+        /*
+         publisher(リストをpublisherへ変換したもの) からの受信結果を表示
+         subscribe(sink や assign) を行うと、型が　AnyCancellable型になる
+         → sink や assign を使用できなくなる
+           → 実行を役割毎に分けて、storeで一つの subscription にまとめる
+         */
+        
+        listPublisher
+            //.assign(to: \.value, on: SomeObject())
+            .sink(receiveCompletion: { completion in
+                print("Receive Completion : ", completion)
+            }, receiveValue:{ value in
+                print("Receive Value : ", value)
+            })
+            .store(in: &subscriptions)   // 1つの subscription にまとめる
+        
+        listPublisher
+            .assign(to: \.value, on: SomeObject())
+            .store(in: &subscriptions)   // 1つの subscription にまとめる
     }
 }
 
