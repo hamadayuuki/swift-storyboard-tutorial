@@ -28,6 +28,11 @@ public let listPublisher = ["1", "2", "3", "4", "5"].publisher   // 型は Publi
 // Subscribeで .aoutconnect() を行う, Subscribe(sinkやassign)を行うため
 public var timerPublisher = Timer.publish(every: 1.0, on: .main, in: .common)
 
+// Notification を Publisher に変更
+// post を実行して 通知を送信する必要あり
+public let myNotification = Notification.Name("myNotification")
+public var notificationPublisher = NotificationCenter.default.publisher(for: myNotification)
+
 // 受信結果を保持し続けるために使用
 public var cancellable: Cancellable?
 
@@ -67,6 +72,9 @@ class ViewController: UIViewController {
                    print(value)
                })
          */
+        
+        // NotificationCenter の Publisher を実行する
+        NotificationCenter.default.post(Notification(name: myNotification))
         
     }
 }
@@ -135,11 +143,19 @@ final class Receiver {
          timerPublisher type  :  TimerPublisher
          → TimerPublisher は,他のPublisher とは 型が異なる.
          */
+        /*
         cancellable = timerPublisher
             .autoconnect()
             .sink { value in
                 print(value)
             }
+         */
+        
+        notificationPublisher
+            .sink { value in
+                print("Receive Value : ", value)
+            }
+            .store(in: &subscriptions)
         
     }
 }
