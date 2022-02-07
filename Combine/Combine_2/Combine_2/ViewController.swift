@@ -41,6 +41,8 @@ public let urlSessionPublisher = URLSession.shared.dataTaskPublisher(for: url)
 
 // Publish(.send()) されるたびに状態を更新して保持する
 public let currentSubject = CurrentValueSubject<String, Never>("A")
+// Subject を Publisher として使用できる, Publisher(AnyPublisher型) に変換する
+public let anyPublisher = currentSubject.eraseToAnyPublisher()
 
 // 受信結果を保持し続けるために使用
 public var cancellable: Cancellable?
@@ -197,11 +199,22 @@ final class Receiver {
             //.store(in: &subscriptions)
          */
         
+        /*
         currentSubject
             .sink { value in
                 print("Received value : ", value)
             }
             .store(in: &subscriptions)
+         */
+        
+        // eraseToAnyPublisher() によって Subject を Publisher として使用できる
+        anyPublisher
+            .sink { value in
+                print("Received value : ", value)
+            }
+            .store(in: &subscriptions)
+        print(type(of: currentSubject))   // CurrentValueSubject<String, Never>
+        print(type(of: anyPublisher))   // AnyPublisher<String, Never>
         
     }
 }
