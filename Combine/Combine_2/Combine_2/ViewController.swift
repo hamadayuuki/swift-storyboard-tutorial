@@ -39,6 +39,9 @@ public var notificationPublisher = NotificationCenter.default.publisher(for: myN
 public let url = URL(string: "https://api.github.com/search/repositories?q=swift+in:name&sort=stars")!
 public let urlSessionPublisher = URLSession.shared.dataTaskPublisher(for: url)
 
+// Publish(.send()) されるたびに状態を更新して保持する
+public let currentSubject = CurrentValueSubject<String, Never>("A")
+
 // 受信結果を保持し続けるために使用
 public var cancellable: Cancellable?
 
@@ -84,6 +87,13 @@ class ViewController: UIViewController {
         // NotificationCenter の Publisher を実行する
         //NotificationCenter.default.post(Notification(name: myNotification))
         
+        // Publish(.send()) されるたびに状態を更新して保持する
+        currentSubject.send("あ")
+        currentSubject.send("い")
+        currentSubject.send("う")
+        currentSubject.send("え")
+        currentSubject.send("お")
+        print("Current value : ", currentSubject.value)
     }
 }
 
@@ -171,6 +181,7 @@ final class Receiver {
         // urlSession で得た結果を表示
         // 結果は (data: Data, response: URLResponse) で受け取る
         // 結果に含まれる情報(id, name, url など) を表示するには data を使用する
+        /*
         cancellable = urlSessionPublisher
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -184,6 +195,13 @@ final class Receiver {
                 print("Recevied response : ", response)
             })
             //.store(in: &subscriptions)
+         */
+        
+        currentSubject
+            .sink { value in
+                print("Received value : ", value)
+            }
+            .store(in: &subscriptions)
         
     }
 }
