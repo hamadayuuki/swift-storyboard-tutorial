@@ -14,8 +14,9 @@
 
 import UIKit
 import Combine
-import Foundation   // Timer
+import Foundation   // Timer, NotificationCenter, URLSession
 
+// ===== ↓ Publisher =====
 // イベントの送受信を仲介
 // イベントは「文字列を渡して表示させる」というもの
 public let subject = PassthroughSubject<String, Never>()   // <受信する型, 返信する型>
@@ -33,8 +34,15 @@ public var timerPublisher = Timer.publish(every: 1.0, on: .main, in: .common)
 public let myNotification = Notification.Name("myNotification")
 public var notificationPublisher = NotificationCenter.default.publisher(for: myNotification)
 
+// URLSession を Publisher に変更
+// Subscribe時は クラス外で定義した cancellable を使用する
+public let url = URL(string: "https://api.github.com/search/repositories?q=swift+in:name&sort=stars")!
+public let urlSessionPublisher = URLSession.shared.dataTaskPublisher(for: url)
+
 // 受信結果を保持し続けるために使用
 public var cancellable: Cancellable?
+
+// ===== Publisher =====
 
 class ViewController: UIViewController {
 
@@ -74,7 +82,7 @@ class ViewController: UIViewController {
          */
         
         // NotificationCenter の Publisher を実行する
-        NotificationCenter.default.post(Notification(name: myNotification))
+        //NotificationCenter.default.post(Notification(name: myNotification))
         
     }
 }
@@ -87,6 +95,7 @@ final class Receiver {
     //let subscription2: AnyCancellable
     var subscriptions = Set<AnyCancellable>()   // → 2つのsubscriptionを 1つにまとめるための subscription
     
+    // let receiver = Receiver() で呼ばれる
     init() {
         /*
         // 1つ目の受け取り
@@ -151,11 +160,30 @@ final class Receiver {
             }
          */
         
+        /*
         notificationPublisher
             .sink { value in
                 print("Receive Value : ", value)
             }
             .store(in: &subscriptions)
+        */
+         
+        // urlSession で得た結果を表示
+        // 結果は (data: Data, response: URLResponse) で受け取る
+        // 結果に含まれる情報(id, name, url など) を表示するには data を使用する
+        cancellable = urlSessionPublisher
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("実行終了")
+                case .failure(let error):
+                    print("error : ", error)
+                }
+            }, receiveValue: { (data, response) in
+                print("Recevied data : ", data)
+                print("Recevied response : ", response)
+            })
+            //.store(in: &subscriptions)
         
     }
 }
