@@ -90,12 +90,22 @@ class ViewController: UIViewController {
         //NotificationCenter.default.post(Notification(name: myNotification))
         
         // Publish(.send()) されるたびに状態を更新して保持する
+        /*
         currentSubject.send("あ")
         currentSubject.send("い")
         currentSubject.send("う")
         currentSubject.send("え")
         currentSubject.send("お")
         print("Current value : ", currentSubject.value)
+         */
+        
+        // @Published プロパティが更新されると、その値を Publish する
+        let sender = Sender()
+        sender.event = "あ"
+        sender.event = "い"
+        sender.event = "う"
+        sender.event = "え"
+        sender.event = "お"
     }
 }
 
@@ -208,6 +218,7 @@ final class Receiver {
          */
         
         // eraseToAnyPublisher() によって Subject を Publisher として使用できる
+        /*
         anyPublisher
             .sink { value in
                 print("Received value : ", value)
@@ -215,6 +226,13 @@ final class Receiver {
             .store(in: &subscriptions)
         print(type(of: currentSubject))   // CurrentValueSubject<String, Never>
         print(type(of: anyPublisher))   // AnyPublisher<String, Never>
+         */
+        
+        Sender().$event
+            .sink { value in
+                print("Received value : ", value)
+            }
+            .store(in: &subscriptions)
         
     }
 }
@@ -226,4 +244,10 @@ final class SomeObject {
             print("didSet value : ", value)
         }
     }
+}
+
+// @Published を使用して、普通のプロパティから Publisher を生成する
+// プロパティが更新されると、その値を Publish する
+final class Sender {
+    @Published var event: String = "A"
 }
