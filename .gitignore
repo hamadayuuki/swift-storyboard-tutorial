@@ -90,3 +90,7 @@ fastlane/test_output
 iOSInjectionProject/
 
 .DS_Store
+
+README 2.md
+Info 2.plist
+.DS_Store~Combine 2
