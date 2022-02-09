@@ -269,7 +269,8 @@ final class Receiver {
             .store(in: &subscriptions)
          */
         
-        //map
+        // map
+        /*
         let viewModel = ViewModel()
         var formatter = NumberFormatter()   // Apple標準のメソッド, 数値の書式を変更する
         formatter.numberStyle = .spellOut   // 数値を日本語訳する
@@ -281,6 +282,30 @@ final class Receiver {
             }
             .assign(to: \.text, on: viewModel)
             .store(in: &subscriptions)
+         */
+        
+        // filter
+        let viewModel = ViewModel()
+        var formatter = NumberFormatter()   // Apple標準のメソッド, 数値の書式を変更する
+        formatter.numberStyle = .spellOut   // 数値を日本語訳する
+        
+        model.$value
+            // 条件(偶数)に適合する値のみを通す
+            .filter { value in
+                value % 2 == 0
+            }
+            // Publisher を 別のPublisher へ変更する
+            .map { value in
+                formatter.string(from: NSNumber(integerLiteral: value)) ?? ""
+            }
+            .assign(to: \.text, on: viewModel)
+            .store(in: &subscriptions)
+        /*
+         出力結果
+         didSet text :  zero
+         didSet text :  two
+         didSet text :  four
+         */
         
     }
 }
