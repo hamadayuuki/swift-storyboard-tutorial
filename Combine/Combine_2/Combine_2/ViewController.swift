@@ -285,6 +285,7 @@ final class Receiver {
          */
         
         // filter
+        /*
         let viewModel = ViewModel()
         var formatter = NumberFormatter()   // Apple標準のメソッド, 数値の書式を変更する
         formatter.numberStyle = .spellOut   // 数値を日本語訳する
@@ -306,6 +307,20 @@ final class Receiver {
          didSet text :  two
          didSet text :  four
          */
+         */
+        
+        // compactMap
+        let viewModel = ViewModel()
+        var formatter = NumberFormatter()   // Apple標準のメソッド, 数値の書式を変更する
+        formatter.numberStyle = .spellOut   // 数値を日本語訳する
+        
+        model.$value
+            // map + 値が nil になった場合 Publish しない
+            .compactMap { value in
+                formatter.string(from: NSNumber(integerLiteral: value))
+            }
+            .assign(to: \.text, on: viewModel)
+            .store(in: &subscriptions)
         
     }
 }
