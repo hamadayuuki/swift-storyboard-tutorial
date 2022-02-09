@@ -49,6 +49,10 @@ public var cancellable: Cancellable?
 
 // ===== Publisher =====
 
+let sender = Sender()
+
+let model = Model()
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -100,12 +104,22 @@ class ViewController: UIViewController {
          */
         
         // @Published プロパティが更新されると、その値を Publish する
-        let sender = Sender()
+        
+        /*
+        // sender の定義はグローバル変数として行う
         sender.event = "あ"
         sender.event = "い"
         sender.event = "う"
         sender.event = "え"
         sender.event = "お"
+         */
+        
+        //let model = Model()   // → グローバル変数に変更
+        model.value = "1"
+        model.value = "2"
+        model.value = "3"
+        model.value = "4"
+        model.value = "5"
     }
 }
 
@@ -228,10 +242,21 @@ final class Receiver {
         print(type(of: anyPublisher))   // AnyPublisher<String, Never>
          */
         
-        Sender().$event
+        /*
+        // sender の定義はグローバル変数として行う
+        sender.$event
             .sink { value in
                 print("Received value : ", value)
             }
+            .store(in: &subscriptions)
+         */
+        
+        // Operator
+        //let model = Model()   // → グローバル変数に変更
+        let viewModel = ViewModel()
+        // Controller(MVC) を担当, M(Model())のから受けた変更をV(ViewModel())に渡す
+        model.$value
+            .assign(to: \.text, on: viewModel)
             .store(in: &subscriptions)
         
     }
@@ -250,4 +275,18 @@ final class SomeObject {
 // プロパティが更新されると、その値を Publish する
 final class Sender {
     @Published var event: String = "A"
+}
+
+// Model(MVC) を担当
+final class Model {
+    @Published var value: String = "0"
+}
+
+// View(MVC) を担当
+final class ViewModel {
+    var text: String = "" {
+        didSet {
+            print("didSet text : ", text)
+        }
+    }
 }
