@@ -123,11 +123,19 @@ class ViewController: UIViewController {
         model.value = "5"
          */
         
+        /*
         model.value = 1
         model.value = 2
         model.value = 3
         model.value = 4
         model.value = 5
+         */
+        
+        model.subject1.send("1")
+        model.subject1.send("2")
+        model.subject2.send("3")
+        model.subject2.send("4")
+        model.subject1.send("5")
     }
 }
 
@@ -310,6 +318,7 @@ final class Receiver {
          */
         
         // compactMap
+        /*
         let viewModel = ViewModel()
         var formatter = NumberFormatter()   // Apple標準のメソッド, 数値の書式を変更する
         formatter.numberStyle = .spellOut   // 数値を日本語訳する
@@ -321,7 +330,32 @@ final class Receiver {
             }
             .assign(to: \.text, on: viewModel)
             .store(in: &subscriptions)
+         */
         
+        // combineLatest
+        let viewModel = ViewModel()
+        model.subject1
+            // 2つのPublisher(subject1, subject2) から1つの Publisher を作る
+            // 両方のPublisher から値を受け取った時点の状態を Publish する
+            .combineLatest(model.subject2)
+            .map { value1, value2 in
+                "value1:" + value1 + " , value2:" + value2
+            }
+            .assign(to: \.text, on: viewModel)
+            .store(in: &subscriptions)
+        /*
+         入力
+         model.subject1.send("1")   // 1   // 1:"1", 2:    → ×
+         model.subject1.send("2")   // 1   // 1:"2", 2:    → ×
+         model.subject2.send("3")   // 2   // 1:"2", 2:"3" → ○
+         model.subject2.send("4")   // 2
+         model.subject1.send("5")   // 1
+         
+         出力結果
+         didSet text :  value1:2 , value2:3
+         didSet text :  value1:2 , value2:4
+         didSet text :  value1:5 , value2:4
+         */
     }
 }
 
@@ -345,6 +379,10 @@ final class Model {
     //@Published var value: String = "0"
     // map
     @Published var value: Int = 0
+    
+    // combineLatest
+    public let subject1 = PassthroughSubject<String, Never>()
+    public let subject2 = PassthroughSubject<String, Never>()
 }
 
 // View(MVC) を担当
