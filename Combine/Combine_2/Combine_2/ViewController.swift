@@ -114,12 +114,20 @@ class ViewController: UIViewController {
         sender.event = "お"
          */
         
+        /*
         //let model = Model()   // → グローバル変数に変更
         model.value = "1"
         model.value = "2"
         model.value = "3"
         model.value = "4"
         model.value = "5"
+         */
+        
+        model.value = 1
+        model.value = 2
+        model.value = 3
+        model.value = 4
+        model.value = 5
     }
 }
 
@@ -252,10 +260,25 @@ final class Receiver {
          */
         
         // Operator
+        /*
         //let model = Model()   // → グローバル変数に変更
         let viewModel = ViewModel()
         // Controller(MVC) を担当, M(Model())のから受けた変更をV(ViewModel())に渡す
         model.$value
+            .assign(to: \.text, on: viewModel)
+            .store(in: &subscriptions)
+         */
+        
+        //map
+        let viewModel = ViewModel()
+        var formatter = NumberFormatter()   // Apple標準のメソッド, 数値の書式を変更する
+        formatter.numberStyle = .spellOut   // 数値を日本語訳する
+        
+        model.$value
+            // Publisher を 別のPublisher へ変更する
+            .map { value in
+                formatter.string(from: NSNumber(integerLiteral: value)) ?? ""
+            }
             .assign(to: \.text, on: viewModel)
             .store(in: &subscriptions)
         
@@ -279,7 +302,9 @@ final class Sender {
 
 // Model(MVC) を担当
 final class Model {
-    @Published var value: String = "0"
+    //@Published var value: String = "0"
+    // map
+    @Published var value: Int = 0
 }
 
 // View(MVC) を担当
