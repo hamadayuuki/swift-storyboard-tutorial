@@ -8,10 +8,18 @@
 import UIKit
 import Combine
 
+public let label = UILabel()
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // UIの作成
+        label.frame = CGRect(x: 100, y: 100, width: 280, height: 20)
+        label.textColor = .black
+        label.text = "initial text"
+        self.view.addSubview(label)   // View に文字列を追加
         
         let receiver = Receiver()
         receiver.load()
@@ -57,6 +65,12 @@ final class Receiver {
         // isValid の状態を監視し,変化があると SomeObject() に渡す
         account.$isValid
             .assign(to: \.value, on: object)
+            .store(in: &subscriptions)
+        
+        // 描画する文字列を変更
+        account.$isValid
+            .map { "isValid: \($0)"}
+            .assign(to: \.text, on: label)   // UIの更新
             .store(in: &subscriptions)
     }
     
