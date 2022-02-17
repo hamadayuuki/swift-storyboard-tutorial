@@ -13,6 +13,7 @@
 		D44D65B327BCEB42007346AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44D65B127BCEB42007346AB /* Main.storyboard */; };
 		D44D65B527BCEB43007346AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D44D65B427BCEB43007346AB /* Assets.xcassets */; };
 		D44D65B827BCEB43007346AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D44D65B627BCEB43007346AB /* LaunchScreen.storyboard */; };
+		D44D65C027BCFC04007346AB /* ViweModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44D65BF27BCFC04007346AB /* ViweModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D44D65B427BCEB43007346AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D44D65B727BCEB43007346AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D44D65B927BCEB43007346AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D44D65BF27BCFC04007346AB /* ViweModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViweModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				D44D65AB27BCEB42007346AB /* AppDelegate.swift */,
 				D44D65AD27BCEB42007346AB /* SceneDelegate.swift */,
 				D44D65AF27BCEB42007346AB /* ViewController.swift */,
+				D44D65BF27BCFC04007346AB /* ViweModel.swift */,
 				D44D65B127BCEB42007346AB /* Main.storyboard */,
 				D44D65B427BCEB43007346AB /* Assets.xcassets */,
 				D44D65B627BCEB43007346AB /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				D44D65B027BCEB42007346AB /* ViewController.swift in Sources */,
 				D44D65AC27BCEB42007346AB /* AppDelegate.swift in Sources */,
+				D44D65C027BCFC04007346AB /* ViweModel.swift in Sources */,
 				D44D65AE27BCEB42007346AB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

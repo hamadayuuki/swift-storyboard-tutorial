@@ -8,6 +8,7 @@
 import UIKit
 import Combine
 
+/*
 public let label = UILabel()
 
 class ViewController: UIViewController {
@@ -77,6 +78,66 @@ final class Receiver {
     // ユーザーID と パスワード の値渡し
     func load() {
         account.update(userId: "hoge", password: "pass")
+    }
+}
+ */
+
+public let label = UILabel()
+
+// 描画のみを担当
+/*
+ View の役割
+ MVC
+ */
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // UIの作成
+        label.frame = CGRect(x: 100, y: 100, width: 280, height: 20)
+        label.textColor = .black
+        label.text = "initial text"
+        self.view.addSubview(label)   // View に文字列を追加
+        
+        let receiver = Receiver()
+        receiver.load()
+    }
+
+
+}
+
+/*
+ Controller の役割
+ MVC
+ */
+final class Receiver {
+    private var subscriptions = Set<AnyCancellable>()
+    private let viewModel = ViewModel()
+    
+    init() {
+        // Model から値を取得して, Viewに渡す
+        viewModel.labelText
+            .assign(to: \.text, on: label)
+            .store(in: &subscriptions)
+    }
+    
+    func load() {
+        viewModel.load()
+    }
+}
+
+// ユーザーID と パスワード の入力
+final class Account {
+    private(set) var userId = ""
+    private(set) var password = ""
+    @Published private(set) var isValid = false
+    
+    func update(userId: String, password: String) {
+        self.userId = userId
+        self.password = password
+        isValid = (userId.count >= 4) && (password.count >= 4)   // boolean
+        
     }
 }
 
