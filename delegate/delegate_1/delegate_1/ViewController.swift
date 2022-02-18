@@ -32,7 +32,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = testTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        // ④: 受け渡し先のView(=TableViewのセル)にdelegateを呼び出す
+        let cell = testTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TestTableViewCell
+        cell.testTableViewCellDelegate = self   // delegate で使用するView (=セル(ボタンの親)) とする
         cell.backgroundColor = .purple
         return cell   // 描画するセル
     }
@@ -42,5 +44,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+// ②: メソッドの内容を記載    ↓ protocol を準拠
+extension ViewController: TestTableViewCellDelegate {
+    func tapedScreenTransitionButton() {
+        print("ボタンが押されて、protocol のメソッドが呼び出されました")
+    }
 }
 
