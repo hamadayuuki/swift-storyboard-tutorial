@@ -35,7 +35,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         // ④: 受け渡し先のView(=TableViewのセル)にdelegateを呼び出す
         let cell = testTableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TestTableViewCell
         cell.testTableViewCellDelegate = self   // delegate で使用するView (=セル(ボタンの親)) とする
-        cell.backgroundColor = .purple
+        //cell.backgroundColor = .purple
         return cell   // 描画するセル
     }
     
@@ -50,6 +50,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController: TestTableViewCellDelegate {
     func tapedScreenTransitionButton() {
         print("ボタンが押されて、protocol のメソッドが呼び出されました")
+        
+        // 画面遷移を行う
+        let secondViewController = SecondViewController()   // 画面遷移先のView
+        navigationController?.pushViewController(secondViewController, animated: true)   // 画面遷移
     }
 }
 
