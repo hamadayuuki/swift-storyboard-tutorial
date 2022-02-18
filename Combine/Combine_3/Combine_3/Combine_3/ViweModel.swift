@@ -12,6 +12,7 @@
 import Combine
 
 // publish される値を表示用の値に変換する
+/*
 final class ViewModel {
     let labelText: AnyPublisher<String?, Never>
     private let account = Account()
@@ -24,5 +25,26 @@ final class ViewModel {
     
     func load() {
         account.update(userId: "hoge", password: "pass")
+    }
+}
+*/
+
+struct Article {
+    var id: String
+    var title: String
+    var content: String
+}
+
+final class ViewModel {
+    @Published private(set) var articles: [Article] = []
+    
+    // データを取得する
+    func fetch() {
+        let fetchedArticles = (0..<10)
+            .map {
+                Article(id: "id: \($0)", title: "title: \($0)", content: "content: \($0)")
+            }
+        //print("fetchedArticles Type: \(type(of: fetchedArticles))")
+        articles = fetchedArticles
     }
 }

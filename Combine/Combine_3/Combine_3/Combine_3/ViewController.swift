@@ -101,7 +101,8 @@ class ViewController: UIViewController {
         self.view.addSubview(label)   // View に文字列を追加
         
         let receiver = Receiver()
-        receiver.load()
+        //receiver.load()
+        receiver.updateView()
     }
 
 
@@ -117,13 +118,31 @@ final class Receiver {
     
     init() {
         // Model から値を取得して, Viewに渡す
+        /*
         viewModel.labelText
             .assign(to: \.text, on: label)
             .store(in: &subscriptions)
+         */
+        
+        viewModel.$articles
+            .sink { articles in
+                print(type(of: articles))
+                print("articles: \(articles)")
+                for article in articles {
+                    label.text = article.id   // 処理が終わるまで描画されない
+                }
+            }
+            .store(in: &subscriptions)
     }
     
+    /*
     func load() {
         viewModel.load()
+    }
+     */
+    
+    func updateView() {
+        viewModel.fetch()   // データ取得, Publisher を作成
     }
 }
 
