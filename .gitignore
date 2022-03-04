@@ -98,3 +98,5 @@ Info 2.plist
 .DS_Store~Combine
 
 FirebaseCloudMessaging/secret
+FirebaseCloudMessaging/FirebaseCloudMessaging/FirebaseCloudMessaging.entitlements
+FirebaseCloudMessaging/FirebaseCloudMessaging/GoogleService-Info.plist
