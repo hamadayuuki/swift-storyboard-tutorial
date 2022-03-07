@@ -8,8 +8,26 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import SnapKit   // レイアウト
 
 class ViewController: UIViewController {
+    
+    // MARK: Cells
+    let sampleTextField: UITextField = {
+        let textField = UITextField()
+        textField.text = ""
+        textField.placeholder = "文字を入力してください"
+        textField.backgroundColor = UIColor.yellow
+        return textField
+    }()
+    
+    let sampleTextLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.backgroundColor = .red
+        label.textColor = .black
+        return label
+    }()
 
     private let disposeBag = DisposeBag()
     private var viewModel: ViewModel!
@@ -17,8 +35,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .blue
-        
+        setupLayout()
         
         viewModel = ViewModel()
         
@@ -35,6 +52,27 @@ class ViewController: UIViewController {
         
         // ■ 流す
         viewModel.updateItem()   // ④: イベントを流す
+    }
+    
+    // SnapKit を使って画面を描画
+    private func setupLayout() {
+        view.backgroundColor = .blue
+        view.addSubview(sampleTextField)
+        view.addSubview(sampleTextLabel)
+        
+        sampleTextField.snp.makeConstraints { make in
+            make.width.equalTo(300)
+            make.height.equalTo(100)
+            make.center.equalToSuperview()
+        }
+        
+        sampleTextLabel.snp.makeConstraints { make in
+            make.width.equalTo(300)
+            make.height.equalTo(100)
+            make.top.equalTo(sampleTextField.snp.bottom)
+            make.topMargin.equalTo(50)
+            make.centerX.equalToSuperview()
+        }
     }
 
 
