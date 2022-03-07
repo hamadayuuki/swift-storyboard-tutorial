@@ -21,7 +21,15 @@ class ViewController: UIViewController {
         return textField
     }()
     
-    let sampleTextLabel: UILabel = {
+    var bindTextLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.backgroundColor = .green
+        label.textColor = .black
+        return label
+    }()
+    
+    var subscribeTextLabel: UILabel = {
         let label = UILabel()
         label.text = ""
         label.backgroundColor = .red
@@ -36,6 +44,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setupLayout()
+        setupBinding()
         
         viewModel = ViewModel()
         
@@ -58,7 +67,8 @@ class ViewController: UIViewController {
     private func setupLayout() {
         view.backgroundColor = .blue
         view.addSubview(sampleTextField)
-        view.addSubview(sampleTextLabel)
+        view.addSubview(bindTextLabel)
+        view.addSubview(subscribeTextLabel)
         
         sampleTextField.snp.makeConstraints { make in
             make.width.equalTo(300)
@@ -66,13 +76,35 @@ class ViewController: UIViewController {
             make.center.equalToSuperview()
         }
         
-        sampleTextLabel.snp.makeConstraints { make in
+        bindTextLabel.snp.makeConstraints { make in
             make.width.equalTo(300)
             make.height.equalTo(100)
             make.top.equalTo(sampleTextField.snp.bottom)
             make.topMargin.equalTo(50)
             make.centerX.equalToSuperview()
         }
+        
+        subscribeTextLabel.snp.makeConstraints { make in
+            make.width.equalTo(300)
+            make.height.equalTo(100)
+            make.top.equalTo(bindTextLabel.snp.bottom)
+            make.topMargin.equalTo(50)
+            make.centerX.equalToSuperview()
+        }
+    }
+    
+    private func setupBinding() {
+        // bind を使用
+        sampleTextField.rx.text
+            .bind(to: bindTextLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        // subscribe を使用
+        sampleTextField.rx.text
+            .subscribe(onNext: { [weak self] text in
+                self?.subscribeTextLabel.text = text
+            })
+            .disposed(by: disposeBag)
     }
 
 
