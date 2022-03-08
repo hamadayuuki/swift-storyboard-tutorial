@@ -73,22 +73,21 @@ class ViewController: UIViewController {
         sampleTextField.snp.makeConstraints { make in
             make.width.equalTo(300)
             make.height.equalTo(100)
-            make.center.equalToSuperview()
+            make.top.equalTo(view.snp.top).offset(100)
+            make.centerX.equalToSuperview()
         }
         
         bindTextLabel.snp.makeConstraints { make in
             make.width.equalTo(300)
             make.height.equalTo(100)
-            make.top.equalTo(sampleTextField.snp.bottom)
-            make.topMargin.equalTo(50)
+            make.top.equalTo(sampleTextField.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
         }
         
         subscribeTextLabel.snp.makeConstraints { make in
             make.width.equalTo(300)
             make.height.equalTo(100)
-            make.top.equalTo(bindTextLabel.snp.bottom)
-            make.topMargin.equalTo(50)
+            make.top.equalTo(bindTextLabel.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
         }
     }
