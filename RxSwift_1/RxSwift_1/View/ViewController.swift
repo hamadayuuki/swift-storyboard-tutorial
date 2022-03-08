@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         // ■ 受け取りに使用する
         let helloWorldObservable = viewModel.helloWorldObservable   // ①: Subject の定義
         
-        // ■ 受け取る, 受け取りを"宣言"する
+        // ■ 受け取り口, 受け取りを"宣言"する
         helloWorldObservable   // ②: Subject を購読
             // ③: 流れてきたデータを表示
             .subscribe(onNext: { [weak self] message in
@@ -95,6 +95,11 @@ class ViewController: UIViewController {
     private func setupBinding() {
         // bind を使用
         sampleTextField.rx.text
+            //     ↓変換前  ↓変換後
+            .map { text -> String? in
+                guard let text = text else { return nil }
+                return "あと\(10 - text.count)文字"
+            }
             .bind(to: bindTextLabel.rx.text)
             .disposed(by: disposeBag)
         
