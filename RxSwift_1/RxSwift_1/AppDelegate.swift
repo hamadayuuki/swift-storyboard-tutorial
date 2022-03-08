@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = ViewController()   // アプリ起動時に表示する
+        window?.rootViewController = CountUpViewController()   // アプリ起動時に表示する
         
         return true
     }
