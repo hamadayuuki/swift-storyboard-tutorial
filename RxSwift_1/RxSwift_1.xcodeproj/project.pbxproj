@@ -19,6 +19,12 @@
 		D48D595927D66AA500A0993A /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D48D595827D66AA500A0993A /* SnapKit */; };
 		D48D595D27D7588100A0993A /* CountUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D595C27D7588100A0993A /* CountUpViewController.swift */; };
 		D48D596127D758AE00A0993A /* CounterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D596027D758AE00A0993A /* CounterViewModel.swift */; };
+		D48D596B27D795A600A0993A /* RxWebKit in Frameworks */ = {isa = PBXBuildFile; productRef = D48D596A27D795A600A0993A /* RxWebKit */; };
+		D48D596E27D795BC00A0993A /* RxOptional in Frameworks */ = {isa = PBXBuildFile; productRef = D48D596D27D795BC00A0993A /* RxOptional */; };
+		D48D597327D86B3A00A0993A /* RxDataSourcesViewontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D597227D86B3A00A0993A /* RxDataSourcesViewontroller.swift */; };
+		D48D597527D86B4900A0993A /* RxDataSourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D597427D86B4900A0993A /* RxDataSourcesViewModel.swift */; };
+		D48D597827D86BAE00A0993A /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = D48D597727D86BAE00A0993A /* Differentiator */; };
+		D48D597A27D86BAE00A0993A /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = D48D597927D86BAE00A0993A /* RxDataSources */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,8 @@
 		D48D595427D6599E00A0993A /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D48D595C27D7588100A0993A /* CountUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountUpViewController.swift; sourceTree = "<group>"; };
 		D48D596027D758AE00A0993A /* CounterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterViewModel.swift; sourceTree = "<group>"; };
+		D48D597227D86B3A00A0993A /* RxDataSourcesViewontroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDataSourcesViewontroller.swift; sourceTree = "<group>"; };
+		D48D597427D86B4900A0993A /* RxDataSourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDataSourcesViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,10 +47,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D48D597827D86BAE00A0993A /* Differentiator in Frameworks */,
 				D48D595127D656DE00A0993A /* RxSwift in Frameworks */,
 				D48D595927D66AA500A0993A /* SnapKit in Frameworks */,
+				D48D596E27D795BC00A0993A /* RxOptional in Frameworks */,
 				D48D594F27D656DE00A0993A /* RxRelay in Frameworks */,
+				D48D597A27D86BAE00A0993A /* RxDataSources in Frameworks */,
 				D48D594D27D656DE00A0993A /* RxCocoa in Frameworks */,
+				D48D596B27D795A600A0993A /* RxWebKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +82,7 @@
 			children = (
 				D48D593727D64FDE00A0993A /* AppDelegate.swift */,
 				D48D593927D64FDE00A0993A /* SceneDelegate.swift */,
+				D48D596F27D86AF800A0993A /* RxDataSources+UITableView */,
 				D48D595B27D7581900A0993A /* CountUp */,
 				D48D595A27D7580400A0993A /* PracticeRxSwift */,
 				D48D594027D64FE000A0993A /* Assets.xcassets */,
@@ -137,6 +150,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D48D596F27D86AF800A0993A /* RxDataSources+UITableView */ = {
+			isa = PBXGroup;
+			children = (
+				D48D597027D86B1300A0993A /* View */,
+				D48D597127D86B1800A0993A /* ViewModel */,
+			);
+			path = "RxDataSources+UITableView";
+			sourceTree = "<group>";
+		};
+		D48D597027D86B1300A0993A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D48D597227D86B3A00A0993A /* RxDataSourcesViewontroller.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D48D597127D86B1800A0993A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D48D597427D86B4900A0993A /* RxDataSourcesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,6 +196,10 @@
 				D48D594E27D656DE00A0993A /* RxRelay */,
 				D48D595027D656DE00A0993A /* RxSwift */,
 				D48D595827D66AA500A0993A /* SnapKit */,
+				D48D596A27D795A600A0993A /* RxWebKit */,
+				D48D596D27D795BC00A0993A /* RxOptional */,
+				D48D597727D86BAE00A0993A /* Differentiator */,
+				D48D597927D86BAE00A0993A /* RxDataSources */,
 			);
 			productName = RxSwift_1;
 			productReference = D48D593427D64FDE00A0993A /* RxSwift_1.app */;
@@ -190,6 +232,9 @@
 			packageReferences = (
 				D48D594B27D656DE00A0993A /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D48D595727D66AA500A0993A /* XCRemoteSwiftPackageReference "SnapKit" */,
+				D48D596927D795A500A0993A /* XCRemoteSwiftPackageReference "RxWebKit" */,
+				D48D596C27D795BC00A0993A /* XCRemoteSwiftPackageReference "RxOptional" */,
+				D48D597627D86BAE00A0993A /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = D48D593527D64FDE00A0993A /* Products */;
 			projectDirPath = "";
@@ -220,7 +265,9 @@
 				D48D593C27D64FDE00A0993A /* ViewController.swift in Sources */,
 				D48D596127D758AE00A0993A /* CounterViewModel.swift in Sources */,
 				D48D593827D64FDE00A0993A /* AppDelegate.swift in Sources */,
+				D48D597527D86B4900A0993A /* RxDataSourcesViewModel.swift in Sources */,
 				D48D595D27D7588100A0993A /* CountUpViewController.swift in Sources */,
+				D48D597327D86B3A00A0993A /* RxDataSourcesViewontroller.swift in Sources */,
 				D48D595527D6599E00A0993A /* ViewModel.swift in Sources */,
 				D48D593A27D64FDE00A0993A /* SceneDelegate.swift in Sources */,
 			);
@@ -450,6 +497,30 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		D48D596927D795A500A0993A /* XCRemoteSwiftPackageReference "RxWebKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxWebKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		D48D596C27D795BC00A0993A /* XCRemoteSwiftPackageReference "RxOptional" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxOptional";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		D48D597627D86BAE00A0993A /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -472,6 +543,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D48D595727D66AA500A0993A /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		D48D596A27D795A600A0993A /* RxWebKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D48D596927D795A500A0993A /* XCRemoteSwiftPackageReference "RxWebKit" */;
+			productName = RxWebKit;
+		};
+		D48D596D27D795BC00A0993A /* RxOptional */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D48D596C27D795BC00A0993A /* XCRemoteSwiftPackageReference "RxOptional" */;
+			productName = RxOptional;
+		};
+		D48D597727D86BAE00A0993A /* Differentiator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D48D597627D86BAE00A0993A /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = Differentiator;
+		};
+		D48D597927D86BAE00A0993A /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D48D597627D86BAE00A0993A /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
