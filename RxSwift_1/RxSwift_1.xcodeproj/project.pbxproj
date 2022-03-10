@@ -26,6 +26,8 @@
 		D48D597827D86BAE00A0993A /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = D48D597727D86BAE00A0993A /* Differentiator */; };
 		D48D597A27D86BAE00A0993A /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = D48D597927D86BAE00A0993A /* RxDataSources */; };
 		D48D597D27D873E500A0993A /* RxDataSourcesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D597C27D873E500A0993A /* RxDataSourcesModel.swift */; };
+		D48D598327DA071400A0993A /* RxKeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48D598227DA071400A0993A /* RxKeyboardViewController.swift */; };
+		D48D598827DA137500A0993A /* RxKeyboard in Frameworks */ = {isa = PBXBuildFile; productRef = D48D598727DA137500A0993A /* RxKeyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,7 @@
 		D48D597227D86B3A00A0993A /* RxDataSourcesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDataSourcesViewController.swift; sourceTree = "<group>"; };
 		D48D597427D86B4900A0993A /* RxDataSourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDataSourcesViewModel.swift; sourceTree = "<group>"; };
 		D48D597C27D873E500A0993A /* RxDataSourcesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxDataSourcesModel.swift; sourceTree = "<group>"; };
+		D48D598227DA071400A0993A /* RxKeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxKeyboardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D48D597827D86BAE00A0993A /* Differentiator in Frameworks */,
+				D48D598827DA137500A0993A /* RxKeyboard in Frameworks */,
 				D48D595127D656DE00A0993A /* RxSwift in Frameworks */,
 				D48D595927D66AA500A0993A /* SnapKit in Frameworks */,
 				D48D596E27D795BC00A0993A /* RxOptional in Frameworks */,
@@ -84,6 +88,7 @@
 			children = (
 				D48D593727D64FDE00A0993A /* AppDelegate.swift */,
 				D48D593927D64FDE00A0993A /* SceneDelegate.swift */,
+				D48D597E27DA06B800A0993A /* RxKeyboard */,
 				D48D596F27D86AF800A0993A /* RxDataSources+UITableView */,
 				D48D595B27D7581900A0993A /* CountUp */,
 				D48D595A27D7580400A0993A /* PracticeRxSwift */,
@@ -186,6 +191,30 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		D48D597E27DA06B800A0993A /* RxKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				D48D597F27DA06CD00A0993A /* View */,
+				D48D598127DA06D900A0993A /* ViewModel */,
+			);
+			path = RxKeyboard;
+			sourceTree = "<group>";
+		};
+		D48D597F27DA06CD00A0993A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D48D598227DA071400A0993A /* RxKeyboardViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D48D598127DA06D900A0993A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -211,6 +240,7 @@
 				D48D596D27D795BC00A0993A /* RxOptional */,
 				D48D597727D86BAE00A0993A /* Differentiator */,
 				D48D597927D86BAE00A0993A /* RxDataSources */,
+				D48D598727DA137500A0993A /* RxKeyboard */,
 			);
 			productName = RxSwift_1;
 			productReference = D48D593427D64FDE00A0993A /* RxSwift_1.app */;
@@ -246,6 +276,7 @@
 				D48D596927D795A500A0993A /* XCRemoteSwiftPackageReference "RxWebKit" */,
 				D48D596C27D795BC00A0993A /* XCRemoteSwiftPackageReference "RxOptional" */,
 				D48D597627D86BAE00A0993A /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				D48D598627DA137400A0993A /* XCRemoteSwiftPackageReference "RxKeyboard" */,
 			);
 			productRefGroup = D48D593527D64FDE00A0993A /* Products */;
 			projectDirPath = "";
@@ -280,6 +311,7 @@
 				D48D595D27D7588100A0993A /* CountUpViewController.swift in Sources */,
 				D48D597327D86B3A00A0993A /* RxDataSourcesViewController.swift in Sources */,
 				D48D597D27D873E500A0993A /* RxDataSourcesModel.swift in Sources */,
+				D48D598327DA071400A0993A /* RxKeyboardViewController.swift in Sources */,
 				D48D595527D6599E00A0993A /* ViewModel.swift in Sources */,
 				D48D593A27D64FDE00A0993A /* SceneDelegate.swift in Sources */,
 			);
@@ -533,6 +565,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		D48D598627DA137400A0993A /* XCRemoteSwiftPackageReference "RxKeyboard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxKeyboard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -575,6 +615,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D48D597627D86BAE00A0993A /* XCRemoteSwiftPackageReference "RxDataSources" */;
 			productName = RxDataSources;
+		};
+		D48D598727DA137500A0993A /* RxKeyboard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D48D598627DA137400A0993A /* XCRemoteSwiftPackageReference "RxKeyboard" */;
+			productName = RxKeyboard;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
