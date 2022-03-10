@@ -11,7 +11,7 @@ import RxDataSources
 
 class RxDataSourcesViewModel {
     
-    private let items = BehaviorRelay<[RxDataSourcesModel]>(value: [])
+    let items = BehaviorRelay<[RxDataSourcesModel]>(value: [])
     
     var itemsObservable: Observable<[RxDataSourcesModel]> {
         return items.asObservable()
@@ -21,7 +21,7 @@ class RxDataSourcesViewModel {
         updateItems()
     }
     
-    private func updateItems() {
+    func updateItems() {
         let sections: [RxDataSourcesModel] = [
             accountSection(),
             commonSection()
