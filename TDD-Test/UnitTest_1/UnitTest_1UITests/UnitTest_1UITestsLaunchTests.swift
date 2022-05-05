@@ -1,13 +1,13 @@
 //
-//  TDD_1UITestsLaunchTests.swift
-//  TDD_1UITests
+//  UnitTest_1UITestsLaunchTests.swift
+//  UnitTest_1UITests
 //
-//  Created by 濵田　悠樹 on 2022/05/03.
+//  Created by 濵田　悠樹 on 2022/05/05.
 //
 
 import XCTest
 
-class TDD_1UITestsLaunchTests: XCTestCase {
+class UnitTest_1UITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

@@ -1,13 +1,13 @@
 //
-//  TDD_1UITests.swift
-//  TDD_1UITests
+//  UnitTest_1UITests.swift
+//  UnitTest_1UITests
 //
-//  Created by 濵田　悠樹 on 2022/05/03.
+//  Created by 濵田　悠樹 on 2022/05/05.
 //
 
 import XCTest
 
-class TDD_1UITests: XCTestCase {
+class UnitTest_1UITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

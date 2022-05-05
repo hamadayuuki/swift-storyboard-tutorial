@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  TDD_1
+//  UnitTest_1
 //
-//  Created by 濵田　悠樹 on 2022/05/03.
+//  Created by 濵田　悠樹 on 2022/05/05.
 //
 
 import UIKit
@@ -10,15 +10,23 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var navigationController: UINavigationController?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // アプリ起動時に表示する画面の描画
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        // push遷移
+        navigationController = UINavigationController(rootViewController: ViewController())   // 起動時に描画する画面
+        let window = UIWindow(windowScene: windowScene)
+        self.window = window
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        
     }
-
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
