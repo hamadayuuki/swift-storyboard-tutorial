@@ -8,9 +8,16 @@
 import XCTest
 @testable import UnitTest_1
 
+/*
+ ■ UnitTest 実行方法
+    - プログラム左の実行ボタンをクリック → 楽
+    - Product > Test
+    - Command + U → 楽
+ 
+ ■ 関数名: test + テストしたい関数名
+ */
 class UnitTest_1Tests: XCTestCase {
 
-    // 関数名: test + テストしたい関数名
     func testAdd() throws {
         let result = Calclator().add(num1: 10, num2: 20)
         
