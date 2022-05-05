@@ -16,6 +16,16 @@ class ViewController: UIViewController {
         view.backgroundColor = .yellow
     }
 
+}
 
+// MARK: - UnitTest
+struct Calclator {
+    func add(num1: Int, num2: Int) -> Int {
+        num1 + num2
+    }
+    
+    func sub(num1: Int, num2: Int) -> Int {
+        num1 - num2
+    }
 }
 

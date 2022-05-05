@@ -10,27 +10,17 @@ import XCTest
 
 class UnitTest_1Tests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    // 関数名: test + テストしたい関数名
+    func testAdd() throws {
+        let result = Calclator().add(num1: 10, num2: 20)
+        
+        XCTAssertEqual(result, 30)   // 30 = 10 + 20
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testSub() throws {
+        let result = Calclator().sub(num1: 10, num2: 20)
+        
+        XCTAssertEqual(result, -10)   // -10 = 10 - 20
     }
 
 }
