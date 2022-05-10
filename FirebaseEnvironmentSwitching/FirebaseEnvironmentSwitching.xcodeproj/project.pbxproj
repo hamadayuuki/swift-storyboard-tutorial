@@ -24,6 +24,7 @@
 		D465BF15282A6CB700C2FE2A /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = D465BF14282A6CB700C2FE2A /* FirebaseMessaging */; };
 		D465BF17282A6CB700C2FE2A /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D465BF16282A6CB700C2FE2A /* FirebaseStorage */; };
 		D465BF19282A6E4200C2FE2A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D465BF18282A6E4200C2FE2A /* GoogleService-Info.plist */; };
+		D465BF23282A8AEE00C2FE2A /* GoogleService-Info-Develop.plist in Resources */ = {isa = PBXBuildFile; fileRef = D465BF22282A8AEE00C2FE2A /* GoogleService-Info-Develop.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		D465BEFA282A6C0A00C2FE2A /* FirebaseEnvironmentSwitchingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEnvironmentSwitchingUITests.swift; sourceTree = "<group>"; };
 		D465BEFC282A6C0A00C2FE2A /* FirebaseEnvironmentSwitchingUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEnvironmentSwitchingUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D465BF18282A6E4200C2FE2A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D465BF22282A8AEE00C2FE2A /* GoogleService-Info-Develop.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Develop.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +124,7 @@
 				D465BEE2282A6C0A00C2FE2A /* Assets.xcassets */,
 				D465BEE4282A6C0A00C2FE2A /* LaunchScreen.storyboard */,
 				D465BEE7282A6C0A00C2FE2A /* Info.plist */,
-				D465BF18282A6E4200C2FE2A /* GoogleService-Info.plist */,
+				D465BF24282A8AF700C2FE2A /* GoogleService-Info */,
 			);
 			path = FirebaseEnvironmentSwitching;
 			sourceTree = "<group>";
@@ -142,6 +144,15 @@
 				D465BEFC282A6C0A00C2FE2A /* FirebaseEnvironmentSwitchingUITestsLaunchTests.swift */,
 			);
 			path = FirebaseEnvironmentSwitchingUITests;
+			sourceTree = "<group>";
+		};
+		D465BF24282A8AF700C2FE2A /* GoogleService-Info */ = {
+			isa = PBXGroup;
+			children = (
+				D465BF18282A6E4200C2FE2A /* GoogleService-Info.plist */,
+				D465BF22282A8AEE00C2FE2A /* GoogleService-Info-Develop.plist */,
+			);
+			path = "GoogleService-Info";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +275,7 @@
 				D465BEE3282A6C0A00C2FE2A /* Assets.xcassets in Resources */,
 				D465BF19282A6E4200C2FE2A /* GoogleService-Info.plist in Resources */,
 				D465BEE1282A6C0900C2FE2A /* Main.storyboard in Resources */,
+				D465BF23282A8AEE00C2FE2A /* GoogleService-Info-Develop.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

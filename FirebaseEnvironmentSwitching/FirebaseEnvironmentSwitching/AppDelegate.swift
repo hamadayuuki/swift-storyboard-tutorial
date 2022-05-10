@@ -15,7 +15,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        FirebaseApp.configure()
+        var resource = "GoogleService-Info-Develop"
+        #if Develop
+            resource = "GoogleService-Info-Develop"
+        #elseif Debug
+            resource = "GoogleService-Info"
+        #else
+            resource = "GoogleService-Info"
+        #endif
+                
+        if let filePath = Bundle.main.path(forResource: resource, ofType: "plist") {
+            guard let options = FirebaseOptions(contentsOfFile: filePath) else {
+                assert(false, "Could not load config file.")
+            }
+            FirebaseApp.configure(options: options)
+        } else {
+            FirebaseApp.configure()
+        }
+        
         return true
     }
 
