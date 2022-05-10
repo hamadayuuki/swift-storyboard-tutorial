@@ -100,3 +100,4 @@ Info 2.plist
 FirebaseCloudMessaging/secret
 FirebaseCloudMessaging/FirebaseCloudMessaging/FirebaseCloudMessaging.entitlements
 FirebaseCloudMessaging/FirebaseCloudMessaging/GoogleService-Info.plist
+FirebaseEnvironmentSwitching/FirebaseEnvironmentSwitching/GoogleService-Info.plist
